@@ -1,0 +1,26 @@
+# Стиль форматування коду (Qt Creator: Preferences > C++ > Code Style або Beautifier).
+BasedOnStyle: LLVM
+IndentWidth: 4
+ColumnLimit: 90
+AccessModifierOffset: -4
+BreakBeforeBraces: Custom
+BraceWrapping:
+  AfterClass: true
+  AfterFunction: true
+  AfterStruct: false
+  AfterNamespace: false
+  AfterEnum: false
+AllowShortFunctionsOnASingleLine: Inline
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLambdasOnASingleLine: Empty
+BreakConstructorInitializers: BeforeColon
+ConstructorInitializerIndentWidth: 4
+PointerAlignment: Right
+SortIncludes: false
+ReflowComments: true
+SpacesBeforeTrailingComments: 3
+AlignTrailingComments: true
+BinPackArguments: true
+BinPackParameters: true
+AlignAfterOpenBracket: Align
+Cpp11BracedListStyle: true

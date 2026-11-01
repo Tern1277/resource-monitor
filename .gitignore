@@ -1,0 +1,11 @@
+# Build output
+build/
+build-*/
+cmake-build-*/
+
+# Qt Creator / IDE
+.qtcreator/
+*.user
+*.user.*
+.vscode/
+.idea/
