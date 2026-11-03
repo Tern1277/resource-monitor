@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Resource Monitor
+Name[uk]=Монітор ресурсів ПК
+Comment=CPU, RAM, swap and disk usage
+Comment[uk]=Завантаження процесора, пам'яті та дисків
+Exec=resource-monitor
+Icon=resource-monitor
+Terminal=false
+Categories=System;Monitor;Qt;

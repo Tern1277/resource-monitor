@@ -153,7 +153,11 @@ private slots:
     {
         MountEntry root;
         root.device = QStringLiteral("/dev/test");
+#ifdef Q_OS_WIN
+        root.mountPoint = QStringLiteral("C:\\");
+#else
         root.mountPoint = QStringLiteral("/");
+#endif
         root.fsType = QStringLiteral("test");
         DiskInfo d;
         QString error;
@@ -167,7 +171,11 @@ private slots:
     void queryDiskReportsMissingPath()
     {
         MountEntry missing;
+#ifdef Q_OS_WIN
+        missing.mountPoint = QStringLiteral("C:\\шлях\\якого\\немає\\");
+#else
         missing.mountPoint = QStringLiteral("/шлях/якого/немає");
+#endif
         DiskInfo d;
         QString error;
         QVERIFY(!queryDisk(missing, d, &error));
@@ -206,7 +214,11 @@ private slots:
         QVERIFY(memory.totalBytes > 0);
         QVERIFY(memory.availableBytes <= memory.totalBytes);
         QString text;
+#ifdef Q_OS_WIN
+        QVERIFY(!readTextFile(QStringLiteral("C:\\немає-такого-файлу.txt"), text, &error));
+#else
         QVERIFY(!readTextFile(QStringLiteral("/proc/немає-такого-файлу"), text, &error));
+#endif
     }
 
     void monitorProducesValidSnapshot()

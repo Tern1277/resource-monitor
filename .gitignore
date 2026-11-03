@@ -9,3 +9,8 @@ cmake-build-*/
 *.user.*
 .vscode/
 .idea/
+
+# Packaging
+AppDir/
+*.AppImage
+deploy/

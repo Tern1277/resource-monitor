@@ -92,9 +92,13 @@ void MainWindow::buildUi()
     titleFont.setBold(true);
     title->setFont(titleFont);
     auto *systemLabel =
-        new QLabel(QStringLiteral("Система: %1 · ядро Linux %2 · вузол %3")
-                       .arg(QSysInfo::prettyProductName(), QSysInfo::kernelVersion(),
-                            QSysInfo::machineHostName()));
+        new QLabel(QStringLiteral("Система: %1 · ядро %2 %3 · вузол %4")
+#ifdef Q_OS_WIN
+                       .arg(QSysInfo::prettyProductName(), QStringLiteral("Windows NT"),
+#else
+                       .arg(QSysInfo::prettyProductName(), QStringLiteral("Linux"),
+#endif
+                            QSysInfo::kernelVersion(), QSysInfo::machineHostName()));
     systemLabel->setTextInteractionFlags(Qt::TextSelectableByMouse);
     root->addWidget(title);
     root->addWidget(systemLabel);
@@ -421,6 +425,15 @@ void MainWindow::showHelp()
             "Tab / Shift+Tab — перехід між елементами вікна."));
 }
 
+#ifdef Q_OS_WIN
+static const QString kDataSources = QStringLiteral(
+    "GetSystemTimes(), NtQuerySystemInformation(), GlobalMemoryStatusEx(), "
+    "GetDiskFreeSpaceExW().");
+#else
+static const QString kDataSources =
+    QStringLiteral("/proc/stat, /proc/meminfo, /proc/self/mounts, statvfs().");
+#endif
+
 void MainWindow::showAbout()
 {
     showInfo(
@@ -429,6 +442,6 @@ void MainWindow::showAbout()
             "Монітор ресурсів ПК, версія %1\n"
             "Курсовий проєкт з дисципліни «Системне програмування».\n"
             "Мова C++17, бібліотека Qt %2.\n"
-            "Джерела даних: /proc/stat, /proc/meminfo, /proc/self/mounts, statvfs().")
-            .arg(QStringLiteral("1.0.0"), QString::fromLatin1(qVersion())));
+            "Джерела даних: %3")
+            .arg(QStringLiteral("1.1.0"), QString::fromLatin1(qVersion()), kDataSources));
 }

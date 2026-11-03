@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
     QApplication::setApplicationName(QStringLiteral("ResourceMonitor"));
     QApplication::setApplicationDisplayName(QStringLiteral("Монітор ресурсів ПК"));
-    QApplication::setApplicationVersion(QStringLiteral("1.0.0"));
+    QApplication::setApplicationVersion(QStringLiteral("1.1.0"));
     QApplication::setStyle(QStyleFactory::create(QStringLiteral("Fusion")));
 
     // Українські написи стандартних діалогів Qt (пакет qt6-translations-l10n),
